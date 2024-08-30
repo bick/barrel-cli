@@ -23,6 +23,7 @@ dist/
 tmp/
 
 # generated docs
+build
 out
 #docstrings/gen.go
 /.idea/*
