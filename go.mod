@@ -1,3 +1,3 @@
-module clutch-cli
+module noble-cli
 
 go 1.23.0

@@ -10,9 +10,9 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # Copy the executable to the target directory
-cp clutch $TARGET_DIR
+cp noble $TARGET_DIR
 
 # Make sure the file is executable
-chmod +x $TARGET_DIR/clutch
+chmod +x $TARGET_DIR/noble
 
-echo "clutch command installed successfully to $TARGET_DIR"
+echo "noble command installed successfully to $TARGET_DIR"
