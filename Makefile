@@ -5,6 +5,14 @@ TAR_DIR := ./build
 # Application name
 APP_NAME := noble
 
+# Determine the tar command and flags based on OS
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+    TAR_CMD = tar --disable-copyfile -czf
+else
+    TAR_CMD = tar -czf
+endif
+
 # Targets for different architectures
 build: build-amd64 build-arm64
 
@@ -14,7 +22,7 @@ build-amd64:
 	@echo "x86_64 build completed: $(OUTPUT_DIR)/$(APP_NAME)-x86_64"
 	@echo "Creating tar.gz archive for x86_64..."
 	mkdir -p $(TAR_DIR)
-	tar -czf $(TAR_DIR)/$(APP_NAME)-x86_64.tar.gz -C $(OUTPUT_DIR) $(APP_NAME)-x86_64
+	$(TAR_CMD) $(TAR_DIR)/$(APP_NAME)-x86_64.tar.gz -C $(OUTPUT_DIR) $(APP_NAME)-x86_64
 	@echo "x86_64 tar.gz archive created: $(TAR_DIR)/$(APP_NAME)-x86_64.tar.gz"
 
 build-arm64:
@@ -23,7 +31,7 @@ build-arm64:
 	@echo "ARM build completed: $(OUTPUT_DIR)/$(APP_NAME)-arm64"
 	@echo "Creating tar.gz archive for ARM..."
 	mkdir -p $(TAR_DIR)
-	tar -czf $(TAR_DIR)/$(APP_NAME)-arm64.tar.gz -C $(OUTPUT_DIR) $(APP_NAME)-arm64
+	$(TAR_CMD) $(TAR_DIR)/$(APP_NAME)-arm64.tar.gz -C $(OUTPUT_DIR) $(APP_NAME)-arm64
 	@echo "ARM tar.gz archive created: $(TAR_DIR)/$(APP_NAME)-arm64.tar.gz"
 
 clean:
