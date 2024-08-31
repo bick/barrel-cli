@@ -3,7 +3,7 @@ OUTPUT_DIR := ./build
 TAR_DIR := ./build
 
 # Application name
-APP_NAME := noble
+APP_NAME := barrel
 
 # Determine the tar command and flags based on OS
 UNAME_S := $(shell uname -s)
